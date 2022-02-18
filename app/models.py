@@ -16,7 +16,7 @@ class branch_registration(models.Model):
 
 
 class designation(models.Model):
-    branch =models.ForeignKey(branch_registration, on_delete=models.DO_NOTHING, related_name='designationbranch',null=True,blank=True)
+    branch =models.ForeignKey(branch_registration, on_delete=models.DO_NOTHING, related_name='designationbranch', null=True,blank=True)
     designation = models.CharField(max_length=100)
     status = models.CharField(max_length=100)
 
@@ -167,20 +167,19 @@ class project_taskassign(models.Model):
     project = models.ForeignKey(project, on_delete=models.DO_NOTHING, related_name='project_taskassignproject',null=True,blank=True)
     user = models.ForeignKey(user_registration, on_delete=models.DO_NOTHING, related_name='project_taskassignuser',null=True,blank=True)
     tl = models.ForeignKey(user_registration, on_delete=models.DO_NOTHING, related_name='project_taskassigntl',null=True,blank=True)
-    task = models.CharField(max_length=240)
     description = models.TextField()
     startdate = models.DateField(auto_now_add=False, auto_now=False,  null=True, blank=True)
     enddate = models.DateField(auto_now_add=False, auto_now=False,  null=True, blank=True)
     files=models.FileField(upload_to = 'images/', default='')
     tester = models.ForeignKey(user_registration, on_delete=models.DO_NOTHING, related_name='project_taskassign_tester',null=True,blank=True)
     extension = models.IntegerField()
-    reason = models.TextField()
-    extension_status = models.CharField(max_length=200)
-    tl_description = models.CharField(max_length=200)
+    reason = models.TextField(null=True, blank=True)
+    extension_status = models.CharField(max_length=200, null=True, blank=True)
+    tl_description = models.CharField(max_length=200, null=True, blank=True)
     submitted_date= models.DateField(auto_now_add=False, auto_now=False,  null=True, blank=True)
     employee_files = models.FileField(upload_to = 'images/', default='')
-    employee_description = models.TextField()
-    status = models.CharField(max_length=200)
+    employee_description = models.TextField(null=True, blank=True)
+    status = models.CharField(max_length=200, null=True, blank=True)
 
 
     def __str__(self):

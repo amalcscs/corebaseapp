@@ -8,9 +8,9 @@ def login(request):
 
 def home(request):
     if request.method =='POST':
-        if user_registration.objects.filter(email=request.POST['email'], password=request.POST['password'],designation='TL').exists():
+        if user_registration.objects.filter(email=request.POST['email'], password=request.POST['password']).exists():
             member=user_registration.objects.get(email=request.POST['email'], password=request.POST['password'])
-            request.session['usernametl'] = member.designation
+
             request.session['usernametl1'] = member.fullname
             return render(request, 'TLsec.html', {'member':member})
         else:
@@ -19,7 +19,7 @@ def home(request):
             
 
 def devindex(request):
-    return render(request,'devindex.html')
+    return render(request,'devindex.html')  
 def devdashboard(request):
     return render(request,'devdashboard.html')
 def devReportedissues(request):
@@ -99,12 +99,10 @@ def TSsucess(request):
 def tldashboard(request):
     if request.session.has_key('usernametl1'):
         usernameM1 = request.session['usernametl1']
-    
-    if request.session.has_key('usernametl'):
-        usernameM2 = request.session['usernametl']
+ 
     else:
-        usernameM2 = "dummy"
-    mem = user_registration.objects.filter(designation=usernameM2).filter(fullname=usernameM1)
+        usernameM1 = "dummy"
+    mem = user_registration.objects.filter(fullname=usernameM1)
     return render(request, 'TLdashboard.html',{'mem':mem})
     
 def tlprojects(request):
