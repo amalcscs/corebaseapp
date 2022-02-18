@@ -1,0 +1,40 @@
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!--  date picker  -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- sweetalert -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{%load static%}
+<style>
+    body{
+        background-image: url('{% static "bg13.jpeg" %}');
+        background-repeat:no-repeat;
+        background-size:100% 100%;
+       }
+</style>
+<body>
+    <div class="row">
+   
+        <form method="post"  action="branch" enctype="multipart/form-data" >
+            {% csrf_token %}
+      
+ <input type="file" id="two" name="photo" class="form-control mt-2 " style="border:none;border-radius:5px;border-color: #2f516f;" >
+ 
+        <button type="submit" id="alert2" class="btn btn-outline-info ml-5" >Apply</button>
+        
+         </form>
+        </div>
+</body>
+
+
+</html>

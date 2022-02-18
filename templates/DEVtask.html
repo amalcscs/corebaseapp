@@ -1,0 +1,121 @@
+{% extends 'devindex.html' %}
+{% load static %}
+{% block content %}
+
+<div class="row pt-3" style="background-color: black;">
+  <div class=" col-12 mt-2  " style="font-size: 20px;font-weight: 600; color: #6c7293;">TASKS</div>
+</div>
+
+<div class="row mt-2">
+    <div class="col-md-8 "style="margin-left: auto;margin-right: auto;">
+    <div class="card" style="color: #6c7293;">
+      <div class="card-body">
+        <form action="" method="post">
+          {% csrf_token %}
+          <!-- <div class="row pt-1">
+                    <div class="col-md-4">
+                    <div class="text-light mr-2 ml-3 mt-2">Select Department </div>
+                    </div>
+                    <div class="col-md-8 ">
+                     <select id="" name="department" class="drop form-control ml-3 mt-2" required>
+                    <option value=""> </option>
+                    <option value=""></option>
+                      </select>
+                   </div>
+                  </div>
+                  <div class="row pt-1">
+                      <div class="col-md-4">
+                      <div class="text-light mr-2 ml-3 mt-2">Select Designaton </div>
+                      </div>
+                      <div class="col-md-8 ">
+                       <select id="" name="" class="drop form-control ml-3 mt-2" required>
+                      <option value=""> </option>
+                      <option value=""></option>
+                        </select>
+                     </div>
+                    </div>
+                    <div class="row pt-1">
+                      <div class="col-md-4">
+                      <div class="text-light mr-2 ml-3 mt-2">Select Employee </div>
+                      </div>
+                      <div class="col-md-8 ">
+                       <select id="" name="" class="drop form-control ml-3 mt-2" required>
+                      <option value=""> </option>
+                      <option value=""></option>
+                        </select>
+                     </div>
+                    </div>
+                    <div class="row pt-1">
+                      <div class="col-md-4">
+                      <div class="text-light mr-2 ml-3 mt-2">Select Tester </div>
+                      </div>
+                      <div class="col-md-8 ">
+                       <select id="" name="" class="drop form-control ml-3 mt-2" required>
+                      <option value=""> </option>
+                      <option value=""></option>
+                        </select>
+                     </div>
+                    </div> -->
+          <div class="row pt-1">
+            <div class="col-md-4">
+              <div class=" mr-2 ml-3 mt-2" style="color:white;">Task</div>
+            </div>
+            <div class="col-md-8 ">
+              <h4 class=" mr-2 ml-6 mt-2" style="font-size: 15px; font-weight: 100; color:white;">frontend</h4>
+              <!-- <input type="text" class="drop form-control ml-3 mt-2" required> -->
+            </div>
+          </div>
+          <div class="row pt-1">
+            <div class="col-md-4">
+              <div class=" mr-2 ml-3 mt-2" style="color:white;"> Due Date</div>
+            </div>
+            <div class="col-md-8 ">
+              <h4 class="mr-2 ml-6 mt-2" style="font-size: 15px; font-weight: 100;color:white;">feb. 02 ,2022</h4>
+              <!-- <input type="date" class="drop form-control ml-3 mt-2" required> -->
+            </div>
+          </div>
+          <div class="row pt-1">
+            <div class="col-md-4">
+              <div class=" mr-2 ml-3 mt-2" style="color:white;"> Submit Date</div>
+            </div>
+            <div class="col-md-8 ">
+              <h4 class=" mr-2 ml-6 mt-2" style="font-size: 15px; font-weight: 100;color:white;">feb. 05 ,2022</h4>
+              <!-- <input type="date" class="drop form-control ml-3 mt-2" required> -->
+            </div>
+          </div>
+          <div class="row pt-1">
+            <div class="col-md-4">
+              <div class=" mr-2 ml-3 mt-2" style="color:white;">Description</div>
+            </div>
+            <div class="col-md-8 ">
+              <h4 class=" mr-2 ml-6 mt-2" style="font-size: 15px; font-weight: 100;color:white;">frontend designing</h4>
+              <!-- <input type="text" class="drop form-control ml-3 mt-2" required> -->
+            </div>
+          </div>
+
+          <div class="row pt-1">
+            <div class="col-md-4">
+              <div class=" mr-2 ml-3 mt-2" style="color:white;">Attached Files</div>
+            </div>
+            <div class="col-md-8 ">
+              <h4 class=" mr-2 ml-6 mt-2" style="font-size: 15px; font-weight: 100; "><img
+                  src="{% static 'workreport.png'%} " style="width: 60%;">
+                <!-- <input type="file"  class="form-control mt-2 " style="text-decoration:none;border:none;background-color: #191c24;" > 
+                     </div>
+                    </div>
+                    <div class=" row  mt-3 ">
+                      <div class="col-md-4"></div>
+                       <div class="col-md-4">
+                      </div>
+                     <div class="col-md-4"><button type="submit" id="alert2" class="btn btn-primary ml-5" >Assign</button></div> -->
+                <div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+{% endblock %}

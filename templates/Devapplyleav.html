@@ -1,0 +1,175 @@
+{% extends 'devindex.html' %}
+{% load static %}
+{% block content %}
+<!-- <!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'main.css'%}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <title>Infox core</title>-->
+<style>
+/*
+#box2{
+  padding: 1% 5% 1% 5%;
+  background-color: white;
+  border-radius: 20px;
+  float: left;
+  margin-top: 1%;
+  margin-left: 3%;
+  margin-right: 9%;
+  width: 85%;
+}
+#box2 h5,#box2 img{
+  float: left;
+  margin-right: 40px;
+}
+h5{
+  font-weight: 400;
+  margin-top: 10px;
+  color: #616767;
+}
+
+
+
+#hiddendiv{
+  height: auto;
+  width: 75%;
+  float: right;
+
+}
+#box2 img{
+  margin-top: 15px;
+}
+.container{
+  width: 50%;
+  margin-left: 10%;
+}*/
+ #fbox{
+margin-top: 4%;
+margin-left: 5%;
+}/*
+#leaves1{
+  margin: 10%;
+} */
+a{
+  text-decoration: none;
+}
+
+
+  </style>
+     <!-- </head>
+<body> -->
+<!-- <div  id="nav" class="container-fluid">
+        <a class="one" id="infox"><b>iNFOX</b></a>
+        <a class="two" id="core"><b>Core</b></a>
+        <a class="three" id=""></a>
+          {% for t in mem %}
+    {% if forloop.first %}{% endif %}
+        <span class="four">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="{{ t.employeeimage.url }}" class="rounded-circle"  width="50" height="50" id="img2"></span><a href="logout" style="padding-right: 1%;padding-top: 1%;color: white">LOGOUT</a>
+{% endfor %}
+</div>
+<div class="sidenav">
+  <a href="dr" class="col" id="sidebox1">MY PROFILE</a>
+  <a href="drtopics" class="col" id="sidebox1">TOPICS</a>
+  <a href="drweeklytask" class="col" id="sidebox1">WEEKLY TASKS</a>
+  <a href="drprojects" class="col" id="sidebox1">PROJECTS</a>
+  <a href="drattendance" class="col" id="sidebox1">ATTENDANCE</a>
+  <a href="drreportissues" class="col" id="sidebox1">REPORTED ISSUES</a>
+  <a href="drpayments" class="col" id="sidebox1">PAYMENTS</a>
+  <a href="drapplyleave" class="col" id="sidebox1">APPLY LEAVE</a>
+</div> -->
+<!-- <h5>Revenue</h5>
+<div class="row">
+  <div class="col-8 col-sm-12 col-md-4 my-auto">
+    <div class="d-flex d-sm-block d-md-flex align-items-center">
+      <h2 class="mb-0">$32123</h2>
+      <p class="text-success ms-2 mb-0 font-weight-medium">+3.5%</p>
+    </div>
+    <h6 class="text-muted font-weight-normal">11.38% Since last month</h6>
+  </div>
+  <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
+    <i class="icon-lg mdi mdi-codepen text-primary ms-auto"></i>
+  </div>
+</div> -->
+<div id="myprofile"  style="font-size: 20px;font-weight: 600;opacity: 0.9;color: #6c7293;">APPLY LEAVE</div>
+<div class="row" id="fbox">
+<div class="col-sm-4 col-md-4 grid-margin shadow" id="leaves" style=" max-width: 90%;">
+  <a href="/coreapp/Devapplyleav1">
+  <div class="card" >
+    <div class="card-body">
+    <h3 class="" style="color: white;">Apply leave</h3>
+      <div class="row">
+        <div class="col-8 col-sm-12 col-xl-8 my-auto">
+          <div class="d-flex d-sm-block d-md-flex align-items-center">
+            <h2 class="mb-0"></h2>
+            <p class="text-success ms-2 mb-0 font-weight-medium"></p>
+          </div>
+          <h6 class="text-muted font-weight-normal"></h6>
+        </div>
+        <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
+          <!-- <i class="icon-lg mdi mdi-wallet-travel text-danger ms-auto"></i> -->
+          <i class="icon-lg mdi mdi-contacts text-primary"></i>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</a>
+</div>
+<div class="col-sm-4 grid-margin shadow" id="leaves1" style="margin-left: 0%; max-width: 90%;">
+  <a href="/coreapp/Devleaverequiest">
+  <div class="card">
+    <div class="card-body">
+    <h3 class="" style="color: white;">Requested leaves</h3>
+      <div class="row">
+        <div class="col-8 col-sm-12 col-xl-8 my-auto">
+            <div class="d-flex d-sm-block d-md-flex align-items-center">
+              <h2 class="mb-0"></h2>
+              <p class="text-danger ms-2 mb-0 font-weight-medium"></p>
+            </div>
+          <h6 class="text-muted font-weight-normal"></h6>
+        </div>
+        <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
+          <!-- <i class="icon-lg mdi mdi-monitor text-success ms-auto"></i> -->
+          <i class="icon-lg mdi mdi-file-document-box"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</a>
+</div>
+</div>
+
+
+
+
+<!-- 
+  <div class="container row" style="border: 1px solid white;">
+    <div class="col-md-4">
+<div><label id="myprofile">REQUESTED LEAVE</label>
+<div id="hiddendiv">
+{% for leavereq in names %}
+   {% if forloop.first %} {% endif %}
+    <div id="box2" class="shadow bg-white">
+    <img src="{% static 'circle.png'%}" width="20" height="20">
+    <h5>Requested leave from </h5>
+    <h5 style="width: 130px">{{leavereq.leavefrom}}</h5>
+    <h5 style="width: 130px">{{leavereq.leaveto}}</h5>
+    <h5 style="">STATUS</h5>
+    <h5 style="width: 80px;color: blue"><span>{{ leavereq.status }}</span></h5>
+    </div>
+{% endfor %}
+</div>
+</div>
+</div>
+</div>
+</div>
+</body> -->
+{% endblock %}
+</html>

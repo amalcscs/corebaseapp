@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+{% extends 'devindex.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<style>
+ 
+</style>
+<body>
+  <div class="row pt-3" >
+    <div class="" style="font-size: 20px;font-weight: 600;color:#6C7293;">ATTENDANCE</div>
+  </div>
+  <!-- <label id="myprofile"  style="margin-left: 7%; color: #6c7293;font-size: 20px;font-weight: 900px;">ATTENDANCE</label> -->
+   
+    <div id="firstbox1 " class="container mt-3">
+      <div class="row">
+        <div class="col-md-12">
+          <div id="firstbox" class="shadow p-4 " style="background-color: #191c24">
+            <div class="row">
+              <div class="col-md-3">
+              <label style="color: white;">SELECT FROM DATE</label>&nbsp
+            </div>
+                  <div class="col-md-9">
+                  <input type="date" name="fromdate" style="border: #6c7293 solid 1px;color: #6c7293" class="w-100 form-control" >
+                  </div>
+              
+            </div>
+            <div class="row mt-5">
+              <div class="col-md-3">
+              <label style="color: white;">SELECT TO DATE</label>&nbsp
+            </div>
+                <div class="col-md-9">
+              <input type="date" name="todate" id="regtd" style="border: #6c7293 solid 1px;color: #6c7293;" class="w-100 form-control">
+                </div>
+
+              
+            </div>
+            <div class="row">
+           
+              <div class="col-12">
+            <button id="btnSearch" type="button" class="btn btn-primary Search  mt-3" style="float: right;" >Search</button>
+              </div>
+
+            </div>
+            <div class="row" >
+              <div class="col-md-3 mt-5"  ></div>
+              
+            <div class="col-md-6 mt-5"  >
+            <div id="hiddendiv" class="w-80" >
+             
+        </div>
+      </div>
+      <div class="col-md-3 mt-5"  ></div>
+    </div>
+  </div>
+        <script type="text/javascript">
+
+$(function () {
+            $("#fromdate").datepicker({
+                minDate: 0,
+                onClose: function (selectedDate) {
+                    $("#todate").datepicker("option", "minDate", selectedDate);
+                }
+            });
+            $("#todate").datepicker({
+
+                onClose: function (selectedDate) {
+                    $("#fromdate").datepicker("option", "maxDate", selectedDate);
+                }
+            });
+
+        });
+
+
+
+        //         $("#btnSearch").click(function () {
+        //         const url = $("#personForm").attr("data-cities-url");
+        //         const deptId = $("#regfd").val();
+        //         const desgId = $("#regtd").val();
+        //         $.ajax({
+        //             url: 'Tattend',
+        //             data: {
+        //                 'dept_id': deptId,
+        //                 'desig_id':desgId
+        //             },
+        //             success: function (data) {
+        //                 $("#hiddendiv").html(data);
+        //             }
+        //         });
+        //     });
+        //   function showDiv() {
+        //    document.getElementById('hiddendiv').style.display = "block";
+        // }
+        // Check if file is completely ready
+        
+        $(document).ready(function () {
+  
+              
+              $('#btnSearch').click(function () {
+
+                  
+                  $('#hiddendiv').html('<div class="conatainer "><div class="row table-responsive"> <div class="col-md-2"><table class="table table-bordered   style="color:  ><thead><style>th{padding: 1px; </style><tr><th >DATE</th><th>STATUS</th> <th>LOGIN TIME</th><th>LOGOUT TIME</th> </tr> </thead><tbody></tbody></table></div></div></div>');
+              });
+
+              
+            });
+        
+  
+              
+  // document.getElementById('#btnSearch').click(function () {
+
+      
+  //     document.getElementById('#hiddendiv').style.display="block";
+      
+  // });
+
+  
+
+// $(document).ready(function(){
+// $('#btnSearch').click(function(){
+// $.get('Tattend.html').success(function(data)
+//  {
+//      $('#hiddendiv').html(data);
+//  });
+//  });
+//  });
+        </script>
+</body>
+{% endblock %}
+</html>
