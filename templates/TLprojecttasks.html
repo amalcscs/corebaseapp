@@ -36,11 +36,11 @@
             </tr>
           </thead>
           <tbody>
-            {% for i in emp1 %}
-            
+            {% for i in display %}
+            {% for j in mem %}
             <tr>
               <td style="color:white;">{{i.description}}</td>
-              <td style="color:white;">{{i.fullname}}</td>
+              <td style="color:white;">{{j.fullname}}</td>
               <td class="text-info"><a href="" data-toggle="modal" data-target="#taskstatus"
                   style="text-decoration: none;"><div class="badge badge-outline-info">Task Status</div></a>
               </td>
@@ -55,6 +55,7 @@
                   <div class="progress-bar" style="width:50%;height:20px;">50%</div>
               </td>
             </tr>
+            {% endfor %}
            {% endfor %}
           </tbody>
         </table>
@@ -189,15 +190,15 @@
           </thead>
           <tbody>
             <tr>
-              {% for i in mem %}
+              {% for i in mem2 %}
               <td style="color:white;">{{i.date}} </td>
-              <td style="color:white;"></td>
-              <td style="color:white;">{{i.subtask}}
+              <td style="color:white;">{{i.subtask}}</td>
+              <td style="color:white;">{{i.project.description}}
               </td>
-              <td style="color:white;">{{i.workdone}}
+              <td style="color:white;">{{i.status}}
               </td>
-              <td style="color:white;">{{i.files}}</td>
-              <td class="text-info"><a href="" style="text-decoration:none;"><div class="badge badge-outline-info">Download</div></a></td>
+              <td style="color:white;"><a href="{{i.files}}" style="text-decoration:none;"><div class="badge badge-outline-info">Download</div></a></td>
+              <td class="text-info">{{i.user_registration.fullname}}</td>
             </tr>
             {% endfor %}
           </tbody>
@@ -237,7 +238,7 @@
               </thead>
               <tbody>
                
-                {% for i in a %}
+                {% for i in mem1 %}
                 <tr>
                 
                   <td style="color:white;">{{i.date}}</td>

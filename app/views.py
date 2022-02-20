@@ -108,20 +108,20 @@ def tlprojects(request):
         tlid = request.session['tlid']
     
     mem = user_registration.objects.filter(id=tlid)
-    display = project.objects.all()
+    display = project_taskassign.objects.filter(user_id=tlid)
     return render(request, 'TLprojects.html',{'display':display,'mem':mem})
 
+
+
 def tlprojecttasks(request):
-    emp_id = request.GET.get('prid')
     if request.session.has_key('tlid'):
         tlid = request.session['tlid']
-    else:
-        tlid = "dummy"
-    # mem = user_registration.objects.filter(fullname=usernameM1).filter(id=usernametl4)
-    # pro = project.objects.filter(id=emp_id)
-    emp1 = project.objects.all().filter( id=emp_id)
-    a=test_status.objects.all()
-    return render(request, 'TLprojecttasks.html',{'emp1':emp1,'a':a})
+    projectid=request.GET.get('prid')
+    mem = user_registration.objects.filter(id=tlid)
+    mem1 = test_status.objects.filter(project_id=projectid)
+    mem2 = tester_status.objects.filter(tester_id=tlid)
+    display = project_taskassign.objects.filter(user_id=tlid).filter(project_id=projectid)
+    return render(request, 'TLprojecttasks.html',{'display':display,'mem':mem,'mem1':mem1,'mem2':mem2})
 
 def tltaskstatus(request):
     a=test_status()
