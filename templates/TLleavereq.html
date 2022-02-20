@@ -75,40 +75,46 @@
   <div id="firstbox" class="row shadow p-3" style="background-color: #191c24;">
     <div class="col-md-12 ">
 
-      <form method="POST" action="admin_leave_form" enctype="multipart/form-data" id="myForm">
+      <form method="POST" action="TLleavereq" enctype="multipart/form-data" id="myForm">
         {% csrf_token %}
 
         <div class="row">
 
           <div class="text-left mt-3 ">NAME OF EMPLOYEE</div>
-          <input autocomplete="off" type="text" name="name" class="form-control mt-2 breadcrumb"
-            style="border-radius:5px;" id="name" placeholder="Name" required>
+          <select name="name" class="form-control mt-2 breadcrumb">
+            {% for i in b %}
+                  <option value="{{ i.fullname }}"> {{ i.fullname }} </option>
+                {% endfor %}
+        </select> 
+          <!-- <input autocomplete="off" type="text" name="name" class="form-control mt-2 breadcrumb"
+            style="border-radius:5px;" id="name" placeholder="Name" > -->
         </div>
 
-        <div class="row">
+        <!-- <div class="row">
 
           <div class="text-left mt-3 ">BRANCH</div>
+          
           <input autocomplete="off" type="text" name="branch" class="form-control mt-2 breadcrumb"
-            style="border-radius:5px;" id="branch" placeholder="Branch name" required>
+            style="border-radius:5px;" id="branch" placeholder="Branch name" >
 
-        </div>
-        <div class="row">
+        </div> -->
+        <!-- <div class="row">
 
           <div class="text-left mt-3 ">DESIGNATION</div>
           <input autocomplete="off" type="text" name="designation" class="form-control mt-2 breadcrumb"
-            style="border-radius:5px;" id="designation" placeholder="Designation" required>
+            style="border-radius:5px;" id="designation" placeholder="Designation" >
 
-        </div>
+        </div> -->
         <div class="row">
           <div class="col-md-6 col-lg-6">
             <div class="text-left mt-3 ">FROM</div>
             <input autocomplete="off" type="date" name="from" class="form-control mt-2 " style="border-radius:5px;"
-              id="from" onchange="myFunction()" placeholder="Leave From..." autocomplete="off" required>
+              id="from" onchange="myFunction()" placeholder="Leave From..." autocomplete="off" >
           </div>
           <div class="col-md-6">
             <div class="text-left mt-3 ">TO</div>
             <input autocomplete="off" type="date" name="to" class="form-control mt-2" style="border-radius:5px;" id="to"
-              onchange="myFunction()" placeholder="Leave To..." autocomplete="off" required>
+              onchange="myFunction()" placeholder="Leave To..." autocomplete="off" >
           </div>
         </div>
         <div class="col pt-2" id="halful">
@@ -120,8 +126,8 @@
         <div class="row">
           <div class="container">
             <div class="text-left mt-5 ">REASON</div>
-            <textarea autocomplete="off" type="text" name="reason" class="form-control mt-2 " style="border-radius:5px;"
-              id="reason" placeholder="Leave Reason" required></textarea>
+            <textarea autocomplete="off" type="text" name="reason" class="form-control mt-2 " style="border-radius:5px;height:90px;"
+              id="reason" placeholder="Leave Reason" ></textarea>
           </div>
         </div>
         <div class=" row  mt-5 ">
@@ -179,75 +185,75 @@
       document.getElementById("halful").style.display = "none";
     }
   }
-  $(document).on('click', '#btn-submit', function (e) {
-    e.preventDefault();
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger'
-      },
-      buttonsStyling: true
-    })
+  // $(document).on('click', '#btn-submit', function (e) {
+  //   e.preventDefault();
+  //   const swalWithBootstrapButtons = Swal.mixin({
+  //     customClass: {
+  //       confirmButton: 'btn btn-success',
+  //       cancelButton: 'btn btn-danger'
+  //     },
+  //     buttonsStyling: true
+  //   })
 
-    swalWithBootstrapButtons.fire({
-      title: 'Are you sure?',
-      text: "Do you want to Apply !",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, apply Leave!',
-      cancelButtonText: 'No, cancel!',
-      reverseButtons: true,
-      preConfirm: () => {
-        if (document.getElementById('reason').value) {
-          // Handle return value 
-        } else {
-          Swal.showValidationMessage('reason input missing')
-        }
-        if (document.getElementById('to').value) {
-          // Handle return value 
-        } else {
-          Swal.showValidationMessage('to input missing')
-        }
-        if (document.getElementById('from').value) {
-          // Handle return value 
-        } else {
-          Swal.showValidationMessage('from input missing')
-        }
-        if (document.getElementById('designation').value) {
-          // Handle return value 
-        } else {
-          Swal.showValidationMessage('designation input missing')
-        }
-        if (document.getElementById('branch').value) {
-          // Handle return value 
-        } else {
-          Swal.showValidationMessage('branch input missing')
-        }
-        if (document.getElementById('name').value) {
-          // Handle return value 
-        } else {
-          Swal.showValidationMessage('name input missing')
-        }
-      }
-    }).then((result) => {
-      if (result.isConfirmed) {
-        swalWithBootstrapButtons.fire(
-          'Applied',
-          'Your leave has been Applied.',
-          'success'
-        )
-        $('#myForm').submit();
-      } else if (
-        result.dismiss === Swal.DismissReason.cancel
-      ) {
-        swalWithBootstrapButtons.fire(
-          'Cancelled',
-          'Your leave request cancelled',
-          'error'
-        )
-      }
-    })
-  })
+  //   swalWithBootstrapButtons.fire({
+  //     title: 'Are you sure?',
+  //     text: "Do you want to Apply !",
+  //     icon: 'warning',
+  //     showCancelButton: true,
+  //     confirmButtonText: 'Yes, apply Leave!',
+  //     cancelButtonText: 'No, cancel!',
+  //     reverseButtons: true,
+  //     preConfirm: () => {
+  //       if (document.getElementById('reason').value) {
+  //         // Handle return value 
+  //       } else {
+  //         Swal.showValidationMessage('reason input missing')
+  //       }
+  //       if (document.getElementById('to').value) {
+  //         // Handle return value 
+  //       } else {
+  //         Swal.showValidationMessage('to input missing')
+  //       }
+  //       if (document.getElementById('from').value) {
+  //         // Handle return value 
+  //       } else {
+  //         Swal.showValidationMessage('from input missing')
+  //       }
+  //       if (document.getElementById('designation').value) {
+  //         // Handle return value 
+  //       } else {
+  //         Swal.showValidationMessage('designation input missing')
+  //       }
+  //       if (document.getElementById('branch').value) {
+  //         // Handle return value 
+  //       } else {
+  //         Swal.showValidationMessage('branch input missing')
+  //       }
+  //       if (document.getElementById('name').value) {
+  //         // Handle return value 
+  //       } else {
+  //         Swal.showValidationMessage('name input missing')
+  //       }
+  //     }
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       swalWithBootstrapButtons.fire(
+  //         'Applied',
+  //         'Your leave has been Applied.',
+  //         'success'
+  //       )
+  //       $('#myForm').submit();
+  //     } else if (
+  //       result.dismiss === Swal.DismissReason.cancel
+  //     ) {
+  //       swalWithBootstrapButtons.fire(
+  //         'Cancelled',
+  //         'Your leave request cancelled',
+  //         'error'
+  //       )
+  //     }
+  //   })
+  // })
 </script>
 
 </body>

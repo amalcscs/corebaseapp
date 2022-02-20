@@ -1,3 +1,4 @@
+import datetime
 from django.http import request
 from django.shortcuts import render
 from .models import *
@@ -10,8 +11,7 @@ def home(request):
     if request.method =='POST':
         if user_registration.objects.filter(email=request.POST['email'], password=request.POST['password']).exists():
             member=user_registration.objects.get(email=request.POST['email'], password=request.POST['password'])
-
-            request.session['usernametl1'] = member.fullname
+            request.session['tlid'] = member.id
             return render(request, 'TLsec.html', {'member':member})
         else:
             context={'msg':'Invalid uname or password'}
@@ -97,18 +97,65 @@ def TSsucess(request):
 
 
 def tldashboard(request):
-    if request.session.has_key('usernametl1'):
-        usernameM1 = request.session['usernametl1']
+    if request.session.has_key('tlid'):
+        tlid = request.session['tlid']
  
-    else:
-        usernameM1 = "dummy"
-    mem = user_registration.objects.filter(fullname=usernameM1)
+    mem = user_registration.objects.filter(id=tlid)
     return render(request, 'TLdashboard.html',{'mem':mem})
     
 def tlprojects(request):
-    return render(request, 'TLprojects.html')
+    if request.session.has_key('tlid'):
+        tlid = request.session['tlid']
+    
+    mem = user_registration.objects.filter(id=tlid)
+    display = project.objects.all()
+    return render(request, 'TLprojects.html',{'display':display,'mem':mem})
+
 def tlprojecttasks(request):
-    return render(request, 'TLprojecttasks.html')
+    emp_id = request.GET.get('prid')
+    if request.session.has_key('tlid'):
+        tlid = request.session['tlid']
+    else:
+        tlid = "dummy"
+    # mem = user_registration.objects.filter(fullname=usernameM1).filter(id=usernametl4)
+    # pro = project.objects.filter(id=emp_id)
+    emp1 = project.objects.all().filter( id=emp_id)
+    a=test_status.objects.all()
+    return render(request, 'TLprojecttasks.html',{'emp1':emp1,'a':a})
+
+def tltaskstatus(request):
+    a=test_status()
+    if request.method=="POST":
+        a.date=datetime.datetime.now()
+        a.workdone = request.POST.get('work_done')
+        a.files = request.FILES['attach_file']
+        print(a.date)
+        a.save()
+        return render(request, 'TLprojecttasks.html',{'a':a})
+        
+
+    else:
+        c = test_status.objects.all()
+        return render(request,'TLprojecttasks.html',{'c':c}) 
+
+def tltesterstatus(request):
+    
+    mem = tester_status.objects.get()
+    return render(request, 'TLprojecttasks.html',{'mem':mem})
+
+def tlprojectdetails(request):
+    if request.method == 'POST':
+        # team = tester_status.objects.get(id=request.POST.get('team_id'))
+        team = tester_status()
+        team.prostatus = request.POST.get("status")
+        team.progress = request.POST.get("progre")
+        team.save()
+        # base_url = reverse('TLProjectTasks')
+        # query_string = urlencode({'prid': team.project_id})
+        # url = '{}?{}'.format(base_url, query_string)
+        # return redirect(url)
+        render(request, 'TLprojecttasks.html')
+
 def tlsplittask(request):
     return render(request, 'TLsplittask.html')
 def tlgivetask(request):
@@ -119,18 +166,31 @@ def tlgivetask(request):
 
 
 def TLattendance(request):
+    if request.session.has_key('tlid'):
+        tlid = request.session['tlid']
+ 
+    mem = user_registration.objects.filter(id=tlid)
+    
+    return render(request, 'TLattendance.html',{'mem':mem})
+        
+def TLattendancesort(request):
+    if request.session.has_key('tlid'):
+        tlid = request.session['tlid']
+ 
+    mem = user_registration.objects.filter(id=tlid)
     if request.method == "POST":
         fromdate = request.POST.get('fromdate')
         todate = request.POST.get('todate') 
-        mem = attendance.objects.raw('select id,date,status,logintime,logouttime from app_attendance where date between "'+fromdate+'" and "'+todate+'"')
-        return render(request, 'TLattendance.html',{'mem':mem})
+        mem1 = attendance.objects.raw('select id,date,status from app_attendance where date between "'+fromdate+'" and "'+todate+'"')
         
-    else:
-        display=attendance.objects.all()
-        return render(request, 'TLattendance.html',{'display':display})
+    return render(request, 'TLattendance.html',{'mem1':mem1,'mem':mem})
     
 def TLreportissues(request):
-    return render(request, 'TLreportissues.html')
+    if request.session.has_key('tlid'):
+        tlid = request.session['tlid']
+ 
+    mem = user_registration.objects.filter(id=tlid)
+    return render(request, 'TLreportissues.html',{'mem':mem})
 def TLreportedissue1(request):
     return render(request, 'TLreportedissue1.html')
 def TLreportedissue2(request):
@@ -145,11 +205,43 @@ def TLreportsuccess(request):
 
 
 def TLtasks(request):
-    return render(request, 'TLtasks.html')
+    if request.session.has_key('tlid'):
+        tlid = request.session['tlid']
+ 
+    else:
+        tl = "dummy"
+    mem = user_registration.objects.filter(id=tlid)
+    return render(request, 'TLtasks.html',{'mem':mem})
 def TLleave(request):
+    if request.session.has_key('tlid'):
+        tlid = request.session['tlid']
+ 
+    mem = user_registration.objects.filter(id=tlid)
+    return render(request, 'TLreportissues.html',{'mem':mem})
     return render(request, 'TLleave.html')
 def TLleavereq(request):
-    return render(request, 'TLleavereq.html')
+    if request.session.has_key('tlid'):
+        tlid = request.session['tlid']
+ 
+    else:
+        tlid = "dummy"
+    if request.method == "POST":
+        # name = request.POST['name']
+        # name1 = user_registration.objects.get(fullname=name)
+        # branch = request.POST['branch']
+        # branch1 = branch_registration.objects.get(branch_name=branch)
+        # designation = request.POST['city']
+        # designation1 = designation.objects.get(designation=designation)
+        # from = request.POST.get('from')
+        
+        to = request.POST.get('to')
+        haful = request.POST.get('haful')
+        reason = request.POST.get('reason')
+        a = leave(to_date=to, reason=reason)
+        a.save()
+        return render(request, 'TLleavereq.html')
+    
+    
 def TLreqedleave(request):
     return render(request, 'TLreqedleave.html')
 def TLgivetasks(request):

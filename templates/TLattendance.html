@@ -3,9 +3,9 @@
 
 
 {% block content %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <style>
   .card {
@@ -54,14 +54,6 @@
     background: #2A3038;
   }
 
-  /* #tble {
-    margin-bottom: -14px;
-    color: #6c7293;
-    width: 65%;
-    margin-top: 84px;
-     margin-left: 16%;
-    display: block;
-  } */
 
   @media (max-width:767px) {
     .card {
@@ -135,7 +127,7 @@
   <div><label id="head">ATTENDANCE</label></div>
   <div class="container">
 
-<form method="POST">
+<form method="POST" action="TLattendancesort">
   {% csrf_token %}
     <div class="card">
       <div class="card-body">
@@ -147,53 +139,58 @@
           <label>SELECT TO DATE</label>
           <input type="date" id="txtTo" name="todate" class="date " style="border: none;">
         </div>
-        <button id="btnSearch" type="submit" class="btn btn-primary Search" onclick="showhide()" >Search</button>
-
+        <button type="submit" class="btn btn-primary Search"  onclick="submitForm(evnt)">Search</button>
+       
        
       </div>
     </div>
   </div>
 
 </form>
-<div class="card" id="tble">
+<div class="card" id="hai">
   <div class="card-body">
-<table class="table table-bordered table-responsive" >
+<table class="table table-bordered table-responsive"  >
   <thead>
     <tr>
       <th>DATE</th>
       <th>STATUS</th>
-      <th>LOGIN TIME</th>
-      <th>LOGOUT TIME</th>
+     
     </tr>
   </thead>
   <tbody>
     
-    {% for i in mem %}
+    {% for i in mem1 %}
     <tr>
     <td>{{i.date}}</td>
     <td>{{i.status}}</td>
-    <td>{{i.logintime}}</td>
-    <td>{{i.logouttime}}</td>
+    
   </tr>
     {% endfor %}
   </tbody>
 </table>
 </div></div>
 
-<script>  
-  function showhide()
-  {  
-       var div = document.getElementById("newpost");  
-       if (div.style.display !== "none") 
-       {  
-           div.style.display = "none";  
-       }  
-       else
-       {  
-           div.style.display = "block";  
-       }  
-  }  
-</script>  
+<!-- <script>  
+   
+function myFunction() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("search");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+</script>   -->
 
 
 </body>

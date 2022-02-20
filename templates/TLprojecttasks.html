@@ -36,9 +36,11 @@
             </tr>
           </thead>
           <tbody>
+            {% for i in emp1 %}
+            
             <tr>
-              <td style="color:white;">manager and hr module</td>
-              <td style="color:white;">Christin</td>
+              <td style="color:white;">{{i.description}}</td>
+              <td style="color:white;">{{i.fullname}}</td>
               <td class="text-info"><a href="" data-toggle="modal" data-target="#taskstatus"
                   style="text-decoration: none;"><div class="badge badge-outline-info">Task Status</div></a>
               </td>
@@ -53,22 +55,7 @@
                   <div class="progress-bar" style="width:50%;height:20px;">50%</div>
               </td>
             </tr>
-            <tr>
-              <td style="color:white;">Updation in admin</td>
-              <td style="color:white;">Christin</td>
-              <td class="text-info"><a href="" data-toggle="modal" data-target="#taskstatus"
-                  style="text-decoration: none;"><div class="badge badge-outline-info">Task Status</div></a> </td>
-              <td class="text-info"><a href="#" data-toggle="modal" data-target="#testerstatus"
-                  style="text-decoration: none;"><div class="badge badge-outline-info">Tester Status</div></a></td>
-              <td class="text-info"><a href="#" data-toggle="modal" data-target="#extensionstatus"
-                  style="text-decoration: none;"><div class="badge badge-outline-info">Extension Status</div></a></td>
-              <td class="text-info"><a href="tlsplittask" style="text-decoration: none;"><div class="badge badge-outline-info">Split Status</div></a></td>
-              <td>
-                <div class="progress" data-toggle="modal" data-target="#projectdetails"
-                  style="border-radius:5px;height:20px;background-color:#C2F0EB">
-                  <div class="progress-bar" style="width:40%;height:20px;">40%</div>
-              </td>
-            </tr>
+           {% endfor %}
           </tbody>
         </table>
       </div>
@@ -105,7 +92,8 @@
               <div class="col-md-2 mt-2" style="color:white;"> Feb. 5,2022</div>
               <div class="col-md-1"></div>
             </div>
-         
+            <form action="tlprojectdetails" method="post">
+              {% csrf_token %}
 
           <div class="row mt-3">
             <div class="col-md-1"></div>
@@ -125,10 +113,11 @@
             <div class="col-md-1"></div>
             <div class="col-md-2 mt-2" style="color:white;">Status</div>
             <div class="col-md-2 mt-2">
-              <select class="drop form-control ml-3 mt-2" style="border:1px solid #6C7293 ;" required>
-                <option value=""> </option>
-                <option value="" class="text-light mt-2" style="color:white;">in progress</option>
-                <option value="" class="text-light mt-2" style="color:white;">completed</option>
+              <select class="drop form-control ml-3 mt-2" name="status" style="border:1px solid #6C7293 ;" required>
+                <option value="" selected="selected" class="text-light mt-2">Not selected</option>
+                <option value="Inprogress" class="1 text-light mt-2">In progress</option>
+                <option value="pending" class="2 text-light mt-2">pending</option>
+              <option value="completed" class="3 text-light mt-2">completed</option>
               </select>
             </div>
             <div class="col-md-2"></div>
@@ -141,7 +130,7 @@
             <div class="col-md-1"></div>
             <div class="col-md-2 mt-1 mt-2" style="color:white;">Progress</div>
             <div class="col-md-2 mt-1 mt-2">
-              <input type="text" class="form-control" style="border:1px solid #6C7293 ;">
+              <input type="text" name="progre" class="form-control" >
             </div>
             <div class="col-md-2"></div>
             <div class="col-md-2"></div>
@@ -149,7 +138,7 @@
             </div>
             <div class="col-md-1"></div>
           </div>
-
+        </form>
         </div>
 
 
@@ -179,7 +168,7 @@
   <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
     <div class="modal-content modal-xl" style="background-color: #191c24;">
       <div class="modal-header" style="border-bottom: 0 none;">
-        <h5 class="modal-title text-info">Tester status</h5>
+        <h5 class="modal-title text-info">Test Report</h5>
         <button type="button" class="close text-light" data-dismiss="modal" aria-label=""
           style="background-color: #191c24;border:none;font-size: 20px;">
           <span aria-hidden="true">&times;</span>
@@ -190,46 +179,27 @@
           <thead style="background-color: black;">
             <tr>
               <th scope="col" style="color:#6C7293;">Date</th>
-              <th scope="col" style="color:#6C7293;">ReportBy</th>
               <th scope="col" style="color:#6C7293;">Task</th>
-              <th scope="col" style="color:#6C7293;">Sub Task</th>
-              <th scope="col" style="color:#6C7293;">Work Done</th>
+  
+              <th scope="col" style="color:#6C7293;">Description</th>
+              <th scope="col" style="color:#6C7293;">Status</th>
               <th scope="col" style="color:#6C7293;">Files</th>
+              <th scope="col" style="color:#6C7293;">TestBy</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td style="color:white;">jan 21, 2022 </td>
-              <td style="color:white;">nijil</td>
-              <td style="color:white;">update base page
-                Deadline jan 31, 2022
+              {% for i in mem %}
+              <td style="color:white;">{{i.date}} </td>
+              <td style="color:white;"></td>
+              <td style="color:white;">{{i.subtask}}
               </td>
-              <td style="color:white;">Registration
-                Deadline jan 31, 2022
+              <td style="color:white;">{{i.workdone}}
               </td>
-              <td style="color:white;">1.work started</td>
+              <td style="color:white;">{{i.files}}</td>
               <td class="text-info"><a href="" style="text-decoration:none;"><div class="badge badge-outline-info">Download</div></a></td>
             </tr>
-            <tr>
-              <td style="color:white;">jan 10, 2022</td>
-              <td style="color:white;">nijil</td>
-              <td style="color:white;">update base page
-                Deadline jan 31, 2022 </td>
-              <td style="color:white;">Registration
-                Deadline jan 31, 2022</td>
-              <td style="color:white;">1.design completed</td>
-              <td class="text-info"><a href="" style="text-decoration:none;"><div class="badge badge-outline-info">Download</div></a></td>
-            </tr>
-            <tr>
-              <td style="color:white;">jan 14, 2022</td>
-              <td style="color:white;">nijil</td>
-              <td style="color:white;">update base page
-                Deadline jan 31, 2022</td>
-              <td style="color:white;">Registration
-                Deadline jan 31, 2022</td>
-              <td style="color:white;">1.work almost completed</td>
-              <td class="text-info"><a href="" style="text-decoration:none;"><div class="badge badge-outline-info">Download</div></a></td>
-            </tr>
+            {% endfor %}
           </tbody>
         </table>
       </div>
@@ -238,6 +208,8 @@
 </div>
 
 <!-- pop up window for task status -->
+<form method="post" action="tltaskstatus" enctype="multipart/form-data">
+  {% csrf_token%}
 
 <div class="modal fade " id="taskstatus">
   <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
@@ -264,25 +236,22 @@
                 </tr>
               </thead>
               <tbody>
+               
+                {% for i in a %}
                 <tr>
-                  <td style="color:white;">jan 21, 2022 </td>
-                  <td style="color:white;">1.front end work completed 2.back end work in progress</td>
-                  <td class="text-info"><a href="#" style="text-decoration: none;"><div class="badge badge-outline-info">Download</div></a> </td>
-                  <td class="text-info"><a href="#" style="text-decoration: none;"></a></td>
-
+                
+                  <td style="color:white;">{{i.date}}</td>
+                  <td style="color:white;">{{i.workdone}}</td>
+                  <td class="text-info"><a href="{{i.files}}" style="text-decoration: none;"><div class="badge badge-outline-info">Download</div></a> </td>
+                  <td class="text-info"></td>
+                  
                 </tr>
+                {% endfor %}
                 <tr>
-                  <td style="color:white;">jan 10, 2022</td>
-                  <td style="color:white;">1.front end work completed 2.back end work in progress</td>
-                  <td class="text-info"><a href="#" style="text-decoration: none;"><div class="badge badge-outline-info">Download</div></a> </td>
-                  <td class="text-info"><a href="#" style="text-decoration: none;"></a></td>
-
-                </tr>
-                <tr>
-                  <td style="color:white;">jan 10, 2022</td>
-                  <td style="color:white;"><textarea style="height: 100px;width: 500px;"></textarea></td>
-                  <td class="text-info"><input type="file" ></td>
-                  <td class="text-info"><button type="button" class=" btn btn-outline-info">Save</button></td>
+                  <td style="color:white;">{% now 'd-M-Y' %}</td>
+                  <td style="color:white;"><textarea style="height: 100px;width: 500px;" name="work_done"></textarea></td>
+                  <td class="text-info"><input id="file" type="file" name="attach_file"></td>
+                  <td class="text-info"><button type="submit" class=" btn btn-outline-info">Save</button></td>
 
                 </tr>
               </tbody>
@@ -295,7 +264,7 @@
 </div>
 </div>
 </div>
-
+</form>
 <!-- pop up window for extension status -->
 <div class="modal fade " id="extensionstatus">
   <div class="modal-dialog bd-example-modal-xl modal-dialog-centered" role="document" tabindex="-1" role="dialog"
