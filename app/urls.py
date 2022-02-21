@@ -68,6 +68,7 @@ urlpatterns = [
     re_path(r'^TLgivetasks$', views.TLgivetasks, name='TLgivetasks'),
     re_path(r'^TLgavetask$', views.TLgavetask, name='TLgavetask'),
     re_path(r'^TLsuccess$', views.TLsuccess, name='TLsuccess'),
+    re_path(r'^TLtaskformsubmit$', views.TLtaskformsubmit, name='TLtaskformsubmit'),
 
 
     # project manager module

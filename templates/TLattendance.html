@@ -139,7 +139,7 @@
           <label>SELECT TO DATE</label>
           <input type="date" id="txtTo" name="todate" class="date " style="border: none;">
         </div>
-        <button type="submit" class="btn btn-primary Search"  onclick="submitForm(evnt)">Search</button>
+        <button type="submit" class="btn btn-primary Search"  onclick="myFunction()">Search</button>
        
        
       </div>
@@ -147,7 +147,7 @@
   </div>
 
 </form>
-<div class="card" id="hai">
+<div class="card" id="myDIV">
   <div class="card-body">
 <table class="table table-bordered table-responsive"  >
   <thead>
@@ -170,27 +170,34 @@
 </table>
 </div></div>
 
-<!-- <script>  
-   
+<script>  
 function myFunction() {
-    var input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById("search");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("myTable");
-    tr = table.getElementsByTagName("tr");
-    for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[0];
-      if (td) {
-        txtValue = td.textContent || td.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          tr[i].style.display = "";
-        } else {
-          tr[i].style.display = "none";
-        }
-      }
-    }
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
   }
-</script>   -->
+} 
+// function myFunction() {
+//     var input, filter, table, tr, td, i, txtValue;
+//     input = document.getElementById("search");
+//     filter = input.value.toUpperCase();
+//     table = document.getElementById("myTable");
+//     tr = table.getElementsByTagName("tr");
+//     for (i = 0; i < tr.length; i++) {
+//       td = tr[i].getElementsByTagName("td")[0];
+//       if (td) {
+//         txtValue = td.textContent || td.innerText;
+//         if (txtValue.toUpperCase().indexOf(filter) > -1) {
+//           tr[i].style.display = "";
+//         } else {
+//           tr[i].style.display = "none";
+//         }
+//       }
+//     }
+//   }
+</script>  
 
 
 </body>

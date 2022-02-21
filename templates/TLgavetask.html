@@ -21,40 +21,44 @@
 }
 </style>
 <h2>PROJECTS</h2>
-
+<form action="" method="post">
+  {% csrf_token %}
+  {% for tas in task %}
 <div class="col-md-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
           <div class="form-group row">
             <label for="exampleInputUsername2" class="col-sm-3 col-form-label">TASK</label>
             <div class="col-sm-9">
-                <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Task Name</label>
+                <label for="exampleInputUsername2" class="col-sm-3 col-form-label">{{tas.taskname}}</label>
             </div>
           </div>
           <div class="form-group row">
             <label for="exampleInputUsername2" class="col-sm-3 col-form-label">DATE</label>
             <div class="col-sm-9">
-                <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Feb 03 2022</label>
+                <label for="exampleInputUsername2" class="col-sm-3 col-form-label">{{tas.enddate}}</label>
             </div>
           </div>
           <div class="form-group row">
             <label for="exampleInputUsername2" class="col-sm-3 col-form-label">DESCRIPTION</label>
             <div class="col-sm-9">
-                <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi at ratione iusto, maiores dolorum esse natus eveniet mollitia neque quis!</label>
+                <label for="exampleInputUsername2" class="col-sm-3 col-form-label">{{tas.user_description}}</label>
             </div>
           </div>
           <div class="form-group row">
             <label for="exampleInputUsername2" class="col-sm-3 col-form-label">SUBMIT DATE</label>
             <div class="col-sm-9">
-                <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Feb 04 2022</label>
+                <label for="exampleInputUsername2" class="col-sm-3 col-form-label">{{tas.submissiondate}}</label>
             </div>
           </div>
           <div class="form-group row">
             <label for="exampleInputUsername2" class="col-sm-3 col-form-label">SCREENSHOT</label>
             <div class="col-sm-9">
-                <img src="{% static 'assets/images/screenshots/classic-vertical.jpg' %}" style="height: 100px; width: 100px;">
+                <img src="{{tas.user_files.url}}" style="height: 100px; width: 100px;">
             </div>
-          </div>
+          </div> 
+          {% endfor %}
+        </form>
       </div>
     </div>
   </div>

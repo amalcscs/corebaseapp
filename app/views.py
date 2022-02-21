@@ -1,6 +1,6 @@
 import datetime
 from django.http import request
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import *
 
 # Create your views here.
@@ -13,6 +13,11 @@ def home(request):
             member=user_registration.objects.get(email=request.POST['email'], password=request.POST['password'])
             request.session['tlid'] = member.id
             return render(request, 'TLsec.html', {'member':member})
+
+        if user_registration.objects.filter(email=request.POST['email'], password=request.POST['password']).exists():
+            member=user_registration.objects.get(email=request.POST['email'], password=request.POST['password'])
+            request.session['prid'] = member.id
+            return render(request, 'PMsec.html', {'member':member})
         else:
             context={'msg':'Invalid uname or password'}
             return render(request,'login.html',context)
@@ -124,6 +129,9 @@ def tlprojecttasks(request):
     return render(request, 'TLprojecttasks.html',{'display':display,'mem':mem,'mem1':mem1,'mem2':mem2})
 
 def tltaskstatus(request):
+    if request.session.has_key('tlid'):
+        tlid = request.session['tlid']
+    mem = user_registration.objects.filter(id=tlid)
     a=test_status()
     if request.method=="POST":
         a.date=datetime.datetime.now()
@@ -131,7 +139,7 @@ def tltaskstatus(request):
         a.files = request.FILES['attach_file']
         print(a.date)
         a.save()
-        return render(request, 'TLprojecttasks.html',{'a':a})
+        return redirect('TLprojecttasks.html',{'a':a,'mem':mem})
         
 
     else:
@@ -211,14 +219,68 @@ def TLtasks(request):
     else:
         tl = "dummy"
     mem = user_registration.objects.filter(id=tlid)
-    return render(request, 'TLtasks.html',{'mem':mem})
+    task = trainer_task.objects.filter(user_id=tlid)
+    return render(request, 'TLtasks.html',{'mem':mem,'task':task})
+
+
+def TLtaskformsubmit(request):
+    if request.session.has_key('tlid'):
+        tlid = request.session['tlid']
+ 
+    else:
+        tl = "dummy"
+    mem = user_registration.objects.filter(id=tlid)
+    if request.method == "POST":
+        taskid = request.GET.get('taskid')
+        task = trainer_task.objects.get(id=taskid)
+        task.user_description = request.POST['description']
+        task.user_files = request.FILES['scn']
+        task.submissiondate = datetime.datetime.now()
+        task.status = 'submitted'
+        task.save()
+    return render(request, 'TLsuccess.html', {'mem': mem, 'task': task})
+
+def TLgivetasks(request):
+    if request.session.has_key('tlid'):
+        tlid = request.session['tlid']
+ 
+    else:
+        tl = "dummy"
+    mem = user_registration.objects.filter(id=tlid)
+    taskid = request.GET.get('taskid')
+    time = datetime.datetime.now()
+    task = trainer_task.objects.filter(user_id=tlid).filter(id=taskid)
+    return render(request, 'TLgivetasks.html', {'mem': mem, 'task': task, 'time': time})
+
+def TLgavetask(request):
+    if request.session.has_key('tlid'):
+        tlid = request.session['tlid']
+ 
+    else:
+        tl = "dummy"
+    mem = user_registration.objects.filter(id=tlid)
+    taskid = request.GET.get('taskid')
+    task = trainer_task.objects.filter(user_id=tlid).filter(id=taskid)
+    return render(request, 'TLgavetask.html', {'mem': mem, 'task': task})
+   
+def TLsuccess(request):
+    if request.session.has_key('tlid'):
+        tlid = request.session['tlid']
+ 
+    else:
+        tl = "dummy"
+    mem = user_registration.objects.filter(id=tlid)
+    return render(request, 'TLsuccess.html', {'mem': mem})
+    
+
+
 def TLleave(request):
     if request.session.has_key('tlid'):
         tlid = request.session['tlid']
  
     mem = user_registration.objects.filter(id=tlid)
-    return render(request, 'TLreportissues.html',{'mem':mem})
-    return render(request, 'TLleave.html')
+    return render(request, 'TLleave.html',{'mem':mem})
+   
 def TLleavereq(request):
     if request.session.has_key('tlid'):
         tlid = request.session['tlid']
@@ -244,12 +306,8 @@ def TLleavereq(request):
     
 def TLreqedleave(request):
     return render(request, 'TLreqedleave.html')
-def TLgivetasks(request):
-    return render(request, 'TLgivetasks.html')
-def TLgavetask(request):
-    return render(request, 'TLgavetask.html')
-def TLsuccess(request):
-    return render(request, 'TLsuccess.html')
+
+
 
 
 
@@ -258,7 +316,11 @@ def promanagerindex(request):
     return render(request, 'promanagerindex.html')
 
 def pmanager_dash(request):
-    return render(request, 'pmanager_dash.html')
+    if request.session.has_key('tlid'):
+        tlid = request.session['tlid']
+ 
+    pro = user_registration.objects.filter(id=tlid)
+    return render(request, 'pmanager_dash.html',{'pro':pro})
 
 def projectmanager_projects(request):
     return render(request, 'projectmanager_projects.html')

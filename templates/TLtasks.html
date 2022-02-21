@@ -84,7 +84,7 @@
                               </th> -->
                 <th> S.No </th>
                 <th> Task Name </th>
-                <th> Date</th>
+                
                 <th> Due Date </th>
                 <th> Submission Date</th>
                 <th> Action</th>
@@ -93,30 +93,28 @@
               </tr>
             </thead>
             <tbody>
-
+              {% for tas in task %}
               <tr>
                 
-                  <td>1</td>
-                  <td> Tname </td>
-                  <td> 5/5/2022 </td>
-                  <td> 10/5/2022</td>
-                  <td></td>
-                  <td><a href="TLgivetasks">
-                    <div class="badge badge-outline-warning">Pending</div></a>
+                  <td>{{tas.id}}</td>
+                  <td>{{tas.taskname}} </td>
+                  <td> {{tas.enddate}} </td>
+                  <td>{{tas.submitdate}}</td>
+                  {% if tas.status == 'pending' %}
+                  
+                  <td><a href="TLgivetasks?taskid={{tas.id}}">
+                    <div class="badge badge-outline-primary">Pending</div>
+                  </a>
                   </td>
-                
+                  {% else %}
+                  <td><a href="TLgavetask?taskid={{tas.id}}">
+                    <div class="badge badge-outline-success">submitted</div>
+                  </a>
+                  </td>
+                  {% endif %}
               </tr>
-
-              <tr>
-                <td> 2 </td>
-                <td> Tname </td>
-                <td> 5/5/2022 </td>
-                <td> 10/5/2022</td>
-                <td> 10/5/2022</td>
-                <td><a href="TLgavetask">
-                  <div class="badge badge-outline-success">Submitted</div></a>
-                </td>
-              <tr>
+              {% endfor %}
+            
             </tbody>
           </table>
         </div>

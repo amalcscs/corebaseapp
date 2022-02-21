@@ -273,6 +273,7 @@ class trainer_task(models.Model):
     taskname =  models.CharField(max_length=240)
     startdate= models.DateField(auto_now_add=False, auto_now=False,  null=True, blank=True)
     enddate=models.DateField(auto_now_add=False, auto_now=False,  null=True, blank=True)
+    submitdate=models.DateField(auto_now_add=False, auto_now=False,  null=True, blank=True)
     files=models.FileField(upload_to = 'images/', default='')
     description = models.TextField()
     user_description = models.TextField()
