@@ -1,4 +1,3 @@
-
 {% extends 'TLindex.html' %}
 {% load static %}
 
@@ -42,14 +41,14 @@
 <body>
 
     <div class="container-fluid" style="padding:0%">
-        <div><label id="head">REPORT ISSUE</label></div>
+        <div><label id="head">Report Issue</label></div>
 
         <div class="card " >
             <div class="card-body">
                 <form action="TLreportsuccess" method='post'>
                     {% csrf_token %}
                     <h4 class="card-title1">Describe your Issue</h4>
-                    <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
+                    <textarea class="form-control" id="exampleTextarea1" name="report" rows="4"></textarea>
                     <button type="submit" class="btn btn-primary ">Report</button>
                 </form>
             </div>

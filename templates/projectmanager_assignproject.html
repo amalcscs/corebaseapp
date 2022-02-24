@@ -3,7 +3,7 @@
 
 <title>Create Project</title>
 
-<form class="card col-12" method="POST" action="#">
+<form class="card col-12" method="POST" action="projectmanager_assignproject">
 
   <div class="form-group">
     {% csrf_token %}
@@ -12,17 +12,18 @@
       <br>
       <label>Select Team Leader</label>
       <select class="form-control" name="pname" id="" style='color:white !important'>
-        <option value=""></option>
-        <option value="">test</option>
-        
+        {% for i in b %}
+        <option value="{{ i.fullname }}"> {{ i.fullname }} </option>
+      {% endfor %}
          </select> <br>
       <label>Employee ID</label>
       <input type="text" class="form-control card-title col-12 md-4">
       <label>Project</label>
-      <select class="form-control" name="" id="" style='color:white !important'>
-        <option value=""></option>
-        <option value="">test2</option>
-      </select>  <br>
+      <select class="form-control" name="project" id="" style='color:white !important'>
+        {% for i in c %}
+        <option value="{{ i.project }}"> {{ i.project }} </option>
+      {% endfor %}
+         </select> <br>
       <label>Description</label>
       <textarea type="text" name="desc" class="form-control card-title col-12 md-4" style='color:white !important;height: 100px;'></textarea>
       <label>Start date</label>

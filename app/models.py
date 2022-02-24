@@ -83,6 +83,9 @@ class user_registration(models.Model):
     startdate =  models.DateField(auto_now_add=False, auto_now=False,  null=True, blank=True)
     enddate =  models.DateField(auto_now_add=False, auto_now=False,  null=True, blank=True)
     status =  models.CharField(max_length=240, null=True,default='')
+    projectmanager =  models.IntegerField(null=True,blank=True)
+    teamleader =  models.IntegerField(null=True,blank=True)
+    employeeid =  models.IntegerField( null=True,default='')
 
     
     def __str__(self):
@@ -220,6 +223,8 @@ class attendance(models.Model):
     user = models.ForeignKey(user_registration, on_delete=models.DO_NOTHING, related_name='attendanceuser',null=True,blank=True)
     date= models.DateTimeField(null=True,blank=True)
     status = models.CharField(max_length=200)
+    login_time = models.TimeField(auto_now=False, auto_now_add=False,default='')
+    logout_time = models.TimeField(auto_now=False, auto_now_add=False,default='')
 
 
     def __str__(self):

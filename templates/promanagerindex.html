@@ -64,6 +64,7 @@
         </div>
       </div>-->
       <!-- partial:partials/_sidebar.html -->
+      {% for i in pro %}
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
 
@@ -76,12 +77,12 @@
             <div class="profile-desc">
               <div class="profile-pic">
                 <div class="count-indicator">
-                  <img class="img-xs rounded-circle " src="{% static '/assets/images/faces/face5.jpg' %}" alt="">
+                  <img class="img-xs rounded-circle " src="{{i.photo.url}}" alt="">
                   <span class="count bg-success"></span>
                 </div>
                 <div class="profile-name">
-                  <h5 class="mb-0 font-weight-normal">John wick</h5>
-                  <span>Project Manager</span>
+                  <h5 class="mb-0 font-weight-normal">{{i.fullname}}</h5>
+                  <span>{{i.designation}}</span>
                 </div>
               </div>
               <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
@@ -362,8 +363,8 @@
               <li class="nav-item dropdown">
                 <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
                   <div class="navbar-profile">
-                    <img class="img-xs rounded-circle" src="{% static '/assets/images/faces/face5.jpg' %}" alt="">
-                    <p class="mb-0 d-none d-sm-block navbar-profile-name">Robert Jr</p>
+                    <img class="img-xs rounded-circle" src="{{i.photo.url}}" alt="">
+                    <p class="mb-0 d-none d-sm-block navbar-profile-name">{{i.fullname}}</p>
                     <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                   </div>
                 </a>
@@ -401,7 +402,7 @@
         </nav>
         <!-- partial -->
         <div class="main-panel">
-
+{% endfor %}
     <div class="content-wrapper">
       {% block content %}
       {% endblock %}

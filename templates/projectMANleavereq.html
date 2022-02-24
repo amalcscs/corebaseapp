@@ -75,11 +75,12 @@
     <div id="firstbox" class="row shadow p-3" style="background-color: #191c24;">
       <div class="col-md-12 ">
 
-        <form method="POST" action="#" enctype="multipart/form-data" id="myForm">
+        <form method="POST" action="projectMANleavereq" enctype="multipart/form-data" id="myForm">
           {% csrf_token %}
-    
-
-           
+  
+          {% for i in pro %}
+            <input type="hidden" name="pr_id" value="{{i.id}}">
+            {% endfor %}
             <div class="row">
               <div class="col-md-6 col-lg-6">
                 <div class="text-left mt-3 ">From</div>
@@ -111,7 +112,7 @@
 
               <div class="col-md-4 offset-5">
                
-                <button type="button" class="btn btn-outline-primary btn-icon-text">
+                <button type="submit" class="btn btn-outline-primary btn-icon-text">
                   <i class="mdi mdi-file-check btn-icon-prepend"></i> Submit </button>
               </div>
         </form>

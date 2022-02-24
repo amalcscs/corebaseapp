@@ -42,7 +42,7 @@ urlpatterns = [
 
 
     # amal
-    #re_path(r'^$', views.index, name='index'),
+    re_path(r'^tlindex$', views.tlindex, name='tlindex'),
     re_path(r'^tldashboard$', views.tldashboard, name='tldashboard'),
     re_path(r'^tlprojects$', views.tlprojects, name='tlprojects'),
     re_path(r'^tlprojecttasks$', views.tlprojecttasks, name='tlprojecttasks'),
@@ -64,6 +64,7 @@ urlpatterns = [
     re_path(r'^TLtasks$', views.TLtasks, name='TLtasks'),
     re_path(r'^TLleave$', views.TLleave, name='TLleave'),
     re_path(r'^TLleavereq$', views.TLleavereq, name='TLleavereq'),
+    re_path(r'^tl_leave_form$', views.tl_leave_form, name='tl_leave_form'),
     re_path(r'^TLreqedleave$', views.TLreqedleave, name='TLreqedleave'),
     re_path(r'^TLgivetasks$', views.TLgivetasks, name='TLgivetasks'),
     re_path(r'^TLgavetask$', views.TLgavetask, name='TLgavetask'),
@@ -105,11 +106,12 @@ urlpatterns = [
     re_path(r'^projectman_team_attendance$', views.projectman_team_attendance, name='projectman_team_attendance'),
 
     re_path(r'^projectMANattendance$', views.projectMANattendance, name='projectMANattendance'),
+    re_path(r'^projectMANattendancesort$', views.projectMANattendancesort, name='projectMANattendancesort'),
     re_path(r'^projectMANreportedissues$', views.projectMANreportedissues, name='projectMANreportedissues'),
     re_path(r'^projectMANreportedissue$', views.projectMANreportedissue, name='projectMANreportedissue'),
     re_path(r'^projectMANreportissue$', views.projectMANreportissue, name='projectMANreportissue'),
     re_path(r'^projectmanagerreportedissue2$', views.projectmanagerreportedissue2, name='projectmanagerreportedissue2'),
-    re_path(r'^MANreportsuccess$', views.MANreportsuccess, name='MANreportsuccess'),
+    re_path(r'^projectMANreportsuccess$', views.projectMANreportsuccess, name='projectMANreportsuccess'),
     re_path(r'^projectMANleave$', views.projectMANleave, name='projectMANleave'),
     re_path(r'^projectMANleavereq$', views.projectMANleavereq, name='projectMANleavereq'),
     re_path(r'^projectMANreqedleave$', views.projectMANreqedleave, name='projectMANreqedleave'),
