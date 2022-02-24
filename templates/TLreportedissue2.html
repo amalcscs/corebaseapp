@@ -59,14 +59,13 @@
         <div class="col-12">
 
           <img src="{% static 'img/y.png'%}" width="30" height="25"><span class=""
-            style="color: white; font-size: 20px;font-weight: 400;padding-left: 20px;"> {% for j in mem %}issue reported by {{j.fullname}} {% endfor %}
+            style="color: white; font-size: 20px;font-weight: 400;padding-left: 20px;"> {% for j in var %}issue reported by {{j.reporter.fullname}}
         </div>
       </div>
       <div class="card">
         <div class="card-body">
-          {% for i in var%}
-          {{i.issue}}
-          {% endfor%}
+          {{j.issue}}
+          
         </div>
       </div>
     </div>
@@ -86,8 +85,8 @@
         </div>
         <div class="card">
           <div class="card-body ">
-            {% for i in var%}
-            {{i.reply}}
+          
+            {{j.reply}}
             {% endfor%}
           </div>
         </div>

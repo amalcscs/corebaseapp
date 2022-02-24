@@ -74,12 +74,10 @@
                 <tr>
                   
                     <td>{{d.id}}</td>
-                    {% for j in mem %}
-                    <td> {{j.fullname}}</td>
-                    <td> {{j.designation}}</td>
-                    {% endfor %}
+                    <td> {{d.reporter.fullname}}</td>
+                    <td> {{d.reporter.designation}}</td>
                     <td> {{d.reported_date}}</td>
-                    <td><a href="TLreportedissue2?rid={{d.id}}">
+                    <td><a href="{% url 'TLreportedissue2' d.id %}">
                       <div class="badge badge-outline-success">Submitted</div></a>
                     </td>
                   

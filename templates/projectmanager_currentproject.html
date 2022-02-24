@@ -24,7 +24,7 @@
     {% for i in var %}
     <div class="col-sm-4 grid-margin">
       <div class="card">
-        <a href="projectmanager_currentdetail?prid={{ i.id }}" style="text-decoration: none; color: white;">
+        <a href="{% url 'projectmanager_currentdetail' i.id %}" style="text-decoration: none; color: white;">
           <div class="card-body">
             
             <div class="row">

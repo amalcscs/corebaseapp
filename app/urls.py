@@ -57,7 +57,7 @@ urlpatterns = [
     re_path(r'^TLattendancesort$', views.TLattendancesort, name='TLattendancesort'),
     re_path(r'^TLreportissues$', views.TLreportissues, name='TLreportissues'),
     re_path(r'^TLreportedissue1$', views.TLreportedissue1, name='TLreportedissue1'),
-    re_path(r'^TLreportedissue2$', views.TLreportedissue2, name='TLreportedissue2'),
+    re_path(r'^TLreportedissue2/(?P<id>\d+)/$', views.TLreportedissue2, name='TLreportedissue2'),
     re_path(r'^TLreport1$', views.TLreport1, name='TLreport1'),
     re_path(r'^TLreportsuccess$', views.TLreportsuccess, name='TLreportsuccess'),
     # bibn
@@ -66,10 +66,10 @@ urlpatterns = [
     re_path(r'^TLleavereq$', views.TLleavereq, name='TLleavereq'),
     re_path(r'^tl_leave_form$', views.tl_leave_form, name='tl_leave_form'),
     re_path(r'^TLreqedleave$', views.TLreqedleave, name='TLreqedleave'),
-    re_path(r'^TLgivetasks$', views.TLgivetasks, name='TLgivetasks'),
-    re_path(r'^TLgavetask$', views.TLgavetask, name='TLgavetask'),
+    re_path(r'^TLgivetasks/(?P<id>\d+)/$', views.TLgivetasks, name='TLgivetasks'),
+    re_path(r'^TLgavetask/(?P<id>\d+)/$', views.TLgavetask, name='TLgavetask'),
     re_path(r'^TLsuccess$', views.TLsuccess, name='TLsuccess'),
-    re_path(r'^TLtaskformsubmit$', views.TLtaskformsubmit, name='TLtaskformsubmit'),
+    re_path(r'^TLtaskformsubmit/(?P<id>\d+)/$', views.TLtaskformsubmit, name='TLtaskformsubmit'),
 
 
     # project manager module
@@ -122,8 +122,8 @@ urlpatterns = [
     re_path(r'^man_tl_attendance$', views.man_tl_attendance, name='man_tl_attendance'), 
 
     re_path(r'^projectmanager_currentproject$', views.projectmanager_currentproject, name='projectmanager_currentproject'), 
-    re_path(r'^projectmanager_currentdetail$', views.projectmanager_currentdetail, name='projectmanager_currentdetail'), 
-    re_path(r'^projectmanager_currentteam$', views.projectmanager_currentteam, name='projectmanager_currentteam'),
+    re_path(r'^projectmanager_currentdetail/(?P<id>\d+)/$', views.projectmanager_currentdetail, name='projectmanager_currentdetail'), 
+    re_path(r'^projectmanager_currentteam/(?P<id>\d+)/$', views.projectmanager_currentteam, name='projectmanager_currentteam'),
     re_path(r'^projectmanager_completeproject$', views.projectmanager_completeproject, name='projectmanager_completeproject'),
     re_path(r'^projectmanager_completedetail$', views.projectmanager_completedetail, name='projectmanager_completedetail'), 
     re_path(r'^projectmanager_completeteam$', views.projectmanager_completeteam, name='projectmanager_completeteam'),
@@ -131,7 +131,7 @@ urlpatterns = [
     re_path(r'^projectmanager_devteam$', views.projectmanager_devteam, name='projectmanager_devteam'),
 
 
-    re_path(r'^projectmanager_currenttl$', views.projectmanager_currenttl, name='projectmanager_currenttl'),
+    re_path(r'^projectmanager_currenttl/(?P<id>\d+)/$', views.projectmanager_currenttl, name='projectmanager_currenttl'),
     re_path(r'^projectmanager_completetl$', views.projectmanager_completetl, name='projectmanager_completetl'),
     re_path(r'^projectmanager_tlreported$', views.projectmanager_tlreported, name='projectmanager_tlreported'), 
 
