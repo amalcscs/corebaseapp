@@ -37,11 +37,11 @@
           </thead>
           <tbody>
             {% for i in display %}
-            {% for j in mem %}
+           
             <tr>
               <td style="color:white;">{{i.description}}</td>
-              <td style="color:white;">{{j.fullname}}</td>
-              <td class="text-info"><a href="" data-toggle="modal" data-target="#taskstatus"
+              <td style="color:white;">{{i.user}}</td>
+              <td class="text-info"><a href="" data-toggle="modal" data-target="#taskstatus{{i.id}}"
                   style="text-decoration: none;"><div class="badge badge-outline-info">Task Status</div></a>
               </td>
               <td class="text-info"><a href="#" data-toggle="modal" data-target="#testerstatus"
@@ -55,7 +55,6 @@
                   <div class="progress-bar" style="width:50%;height:20px;">50%</div>
               </td>
             </tr>
-            {% endfor %}
            {% endfor %}
           </tbody>
         </table>
@@ -209,63 +208,82 @@
 </div>
 
 <!-- pop up window for task status -->
-<form method="post" action="tltaskstatus" enctype="multipart/form-data">
-  {% csrf_token%}
-
-<div class="modal fade " id="taskstatus">
-  <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
-    <div class="modal-content modal-xl" style="background-color: #191c24;">
-      <div class="modal-header" style="border-bottom: 0 none;">
-        <h5 class="modal-title text-info">Sub task</h5>
-        <button type="button" class="close text-light" data-dismiss="modal" aria-label=""
-          style="background-color: #191c24;border:none;font-size: 20px;">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="card">
-        <div class="card-body">
-
-          <div class="table-responsive ">
-            <table class="table  table-bordered ">
-              <thead style="background-color: black;">
-                <tr>
-                  <th scope="col" style="color:#6C7293;">Date</th>
-                  <th scope="col" style="color:#6C7293;">Work done</th>
-                  <th scope="col" style="color:#6C7293;">Files</th>
-                  <th scope="col" style="color:#6C7293;">Actions</th>
-
-                </tr>
-              </thead>
-              <tbody>
-               
-                {% for i in mem1 %}
-                <tr>
-                
-                  <td style="color:white;">{{i.date}}</td>
-                  <td style="color:white;">{{i.workdone}}</td>
-                  <td class="text-info"><a href="{{i.files}}" style="text-decoration: none;"><div class="badge badge-outline-info">Download</div></a> </td>
-                  <td class="text-info"></td>
-                  
-                </tr>
-                {% endfor %}
-                <tr>
-                  <td style="color:white;">{% now 'd-M-Y' %}</td>
-                  <td style="color:white;"><textarea style="height: 100px" class="form-control" name="work_done"></textarea></td>
-                  <td class="text-info"><input id="file" type="file" name="attach_file"></td>
-                  <td class="text-info"><button type="submit" class=" btn btn-outline-info">Save</button></td>
-
-                </tr>
-              </tbody>
-            </table>
-          </div>
+{% for dp in display %}
+<form action="{% url 'tltaskstatus' dp.id %}" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="modal fade" id="taskstatus{{dp.id}}">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+      <div class="modal-content modal-xl" style="background-color: #191c24;">
+        <div class="modal-header">
+          <h5 class="modal-title text-info">Daily Work Report</h5>
+          <button type="button" class="close text-light" data-dismiss="modal" aria-label=""
+            style="font-size: 20px;;background-color: #191c24;border:none;">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
+        <div class="table-responsive mt-3 mb-3 container">
+
+          <table class="table  table-bordered ">
+            <thead style="background-color: black;">
+              <tr>
+                <th scope="col" style="color:#6C7293;">Date</th>
+                <th scope="col" style="color:#6C7293;">Task</th>
+                <th scope="col" style="color:#6C7293;">Sub Task</th>
+                <th scope="col" style="color:#6C7293;">Work Done</th>
+                <th scope="col" style="color:#6C7293;">Files</th>
+                <th scope="col" style="color:#6C7293;">Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              {% for i in taskstatus %}
+
+              {% if i.taskname_id == dp.id %}
+
+              <tr>
+                <td style="color:white;">{{i.date}}</td>
+
+                <td style="color:white;">{{dp.description}}
+                </td>
+                <td style="color:white;">{{dp.tl_description}}
+                </td>
+                <td style="color:white;">{{i.workdone}}
+                </td>
+                <td class="text-info"><button type="submit" class="btn badge-outline-primary">Download</button></td>
+
+              </tr>
+
+              {% endif %}
+
+
+              {% endfor %}
+
+              <tr>
+                <td style="color:white;">{{time}}</td>
+
+                <td style="color:white;">{{dp.description}}
+                </td>
+                <td style="color:white;">{{dp.tl_description}}
+                </td>
+
+                <td style="color:white;"><textarea type="text" name="workdone" class="form-control"
+                    style="height: 75px;"></textarea></td>
+                <td class="text-info"><input type="file" name="filed"></td>
+                <td class="text-info"><button type="submit" class="btn badge-outline-primary">submit</button></td>
+
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
       </div>
     </div>
   </div>
-</div>
-</div>
-</div>
 </form>
+
+{% endfor %}
 <!-- pop up window for extension status -->
 <div class="modal fade " id="extensionstatus">
   <div class="modal-dialog bd-example-modal-xl modal-dialog-centered" role="document" tabindex="-1" role="dialog"
